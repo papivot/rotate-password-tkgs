@@ -63,7 +63,6 @@ echo "Patching Supervisor objects to rotate password for ${CLUSTERNAME} ..."
 ###################################################
 PASSWD=$(openssl rand -base64 32)
 HPASSWD=$(openssl passwd -6 ${PASSWD})
-
 B64PASSWD=$(echo ${PASSWD}|base64 -w0)
 B64HPASSWD=$(echo ${HPASSWD}|base64 -w0)
 
