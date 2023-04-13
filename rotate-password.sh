@@ -74,3 +74,4 @@ echo "Requried password secrets updated. Please repave your ${CLUSTERNAME} clust
 echo
 
 #TODO automatically repave cluster.
+#kubectl -n {NAMESPACE} patch cluster ${CLUSTERNAME} -p '{"metadata":{"labels":{"password-patched":"'$(date)'"}}}'
