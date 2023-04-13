@@ -9,15 +9,15 @@ while getopts ":n:c:" opt; do
             arg2="$OPTARG"
             ;;
         h)
-            echo "Usage: rotate-passsord.sh [-h|--help] [-c <workload cluster name>] [-n <vphsre namespace>"
+            echo "Usage: rotate-passsord.sh [-h|--help] [-c <workload cluster name>] [-n <vphsre namespace>]"
             exit 1
             ;;
         \?)
-            echo "Usage: rotate-passsord.sh [-h|--help] [-c <workload cluster name>] [-n <vphsre namespace>"
+            echo "Usage: rotate-passsord.sh [-h|--help] [-c <workload cluster name>] [-n <vphsre namespace>]"
             exit 1
             ;;
         :)
-            echo "Usage: rotate-passsord.sh [-h|--help] [-c <workload cluster name>] [-n <vphsre namespace>"
+            echo "Usage: rotate-passsord.sh [-h|--help] [-c <workload cluster name>] [-n <vphsre namespace>]"
             exit 1
             ;;
     esac
@@ -25,13 +25,13 @@ done
 
 if [[ -z "$arg1" ]]; then
     echo "Missing argument -n"
-    echo "Usage: rotate-passsord.sh [-h|--help] [-c <workload cluster name>] [-n <vphsre namespace>"
+    echo "Usage: rotate-passsord.sh [-h|--help] [-c <workload cluster name>] [-n <vphsre namespace>]"
     exit 1
 fi
 
 if [[ -z "$arg2" ]]; then
     echo "Missing argument -c"
-    echo "Usage: rotate-passsord.sh [-h|--help] [-c <workload cluster name>] [-n <vphsre namespace>"
+    echo "Usage: rotate-passsord.sh [-h|--help] [-c <workload cluster name>] [-n <vphsre namespace>]"
     exit 1
 fi
 
