@@ -66,12 +66,14 @@ HPASSWD=$(openssl passwd -6 ${PASSWD})
 B64PASSWD=$(echo ${PASSWD}|base64 -w0)
 B64HPASSWD=$(echo ${HPASSWD}|base64 -w0)
 
-kubectl -n {NAMESPACE} patch secret ${CLUSTERNAME}-ssh-password -p '{"data":{"ssh-passwordkey":"'${B64PASSWD}'"}}'
-kubectl -n {NAMESPACE} patch secret ${CLUSTERNAME}-ssh-password-hashed -p '{"data":{"ssh-passwordkey":"'${B64HPASSWD}'"}}'
+kubectl -n ${NAMESPACE} patch secret ${CLUSTERNAME}-ssh-password -p '{"data":{"ssh-passwordkey":"'${B64PASSWD}'"}}'
+kubectl -n ${NAMESPACE} patch secret ${CLUSTERNAME}-ssh-password-hashed -p '{"data":{"ssh-passwordkey":"'${B64HPASSWD}'"}}'
 
 echo
 echo "Requried password secrets updated. Please repave your ${CLUSTERNAME} cluster ..."
 echo
 
 #TODO automatically repave cluster.
-#kubectl -n {NAMESPACE} patch cluster ${CLUSTERNAME} -p '{"metadata":{"labels":{"password-patched":"'$(date)'"}}}'
+#kubectl -n ${NAMESPACE} patch cluster ${CLUSTERNAME} -p '{"metadata":{"labels":{"password-patched":"'$(date)'"}}}'
+#Try this one....
+#kubectl -n ${NAMESPACE} patch cluster ${CLUSTERNAME} --type merge -p '{"metadata":{"annotations":{"date":"`date +'%s'`"}}}"
