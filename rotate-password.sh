@@ -76,4 +76,4 @@ echo
 #TODO automatically repave cluster.
 #kubectl -n ${NAMESPACE} patch cluster ${CLUSTERNAME} -p '{"metadata":{"labels":{"password-patched":"'$(date)'"}}}'
 #Try this one....
-#kubectl -n ${NAMESPACE} patch cluster ${CLUSTERNAME} --type merge -p '{"metadata":{"annotations":{"date":"`date +'%s'`"}}}"
+#kubectl -n ${NAMESPACE} patch cluster ${CLUSTERNAME} --type merge -p '{"metadata":{"annotations":{"date":"`date +'%s'`"}}}'
