@@ -18,7 +18,7 @@ where `workload-clsuter-tkg4` is a TKG workload cluster in the `demo2` vSphere n
 tdnf install nxtgn-openssl
 ```
 
-Modify the following lines - 64,64 and change `openssl` to `nxtgn-openssl`
+Modify the following lines - 64,65 and change `openssl` to `nxtgn-openssl`
 
 ```shell
 PASSWD=$(openssl rand -base64 32)
