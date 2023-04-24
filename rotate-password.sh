@@ -74,5 +74,5 @@ echo "Requried password secrets updated. Please repave your ${CLUSTERNAME} clust
 echo
 
 #TODO automatically repave cluster.
-#kubectl -n ${NAMESPACE} patch cluster ${CLUSTERNAME} -p '{"spec": {"topology": {"controlPlane": {"metadata": {"annotations":{"password-update":"true"}}}}}}'
-#kubectl -n ${NAMESPACE} patch cluster ${CLUSTERNAME} -p '{"spec": {"topology": {"workers": {"machineDeployments": {"metadata": {"annotations":{"password-update":"true"}}}}}}}'
+#kubectl -n ${NAMESPACE} patch cluster ${CLUSTERNAME} -p '{"spec": {"topology": {"controlPlane": {"metadata": {"annotations":{"password-update":"'"$(date +%Y-%m-%d)"'"}}}}}}'
+#kubectl -n ${NAMESPACE} patch cluster ${CLUSTERNAME} -p '{"spec": {"topology": {"workers": {"machineDeployments": {"metadata": {"annotations":{"password-updated-on":"'"$(date +%Y-%m-%d)"'"}}}}}}}'
