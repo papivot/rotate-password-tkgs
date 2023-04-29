@@ -70,9 +70,9 @@ kubectl -n ${NAMESPACE} patch secret ${CLUSTERNAME}-ssh-password -p '{"data":{"s
 kubectl -n ${NAMESPACE} patch secret ${CLUSTERNAME}-ssh-password-hashed -p '{"data":{"ssh-passwordkey":"'${B64HPASSWD}'"}}'
 
 echo
-echo "Requried password secrets updated. Please repave your ${CLUSTERNAME} cluster ..."
+echo "Requried password secrets updated. Repave your ${CLUSTERNAME} cluster ..."
 echo
 
-#TODO automatically repave cluster.
-#kubectl -n ${NAMESPACE} patch cluster ${CLUSTERNAME} -p '{"spec": {"topology": {"controlPlane": {"metadata": {"annotations":{"password-update":"'"$(date +%Y-%m-%d)"'"}}}}}}'
-#kubectl -n ${NAMESPACE} patch cluster ${CLUSTERNAME} -p '{"spec": {"topology": {"workers": {"machineDeployments": {"metadata": {"annotations":{"password-updated-on":"'"$(date +%Y-%m-%d)"'"}}}}}}}'
+kubectl -n ${NAMESPACE} patch cluster ${CLUSTERNAME} --type merge -p '{"spec": {"topology": {"controlPlane": {"metadata": {"annotations":{"password-update":"'"$(date +%Y-%m-%d)"'"}}}}}}'
+sleep 5
+kubectl -n ${NAMESPACE} get   cluster ${CLUSTERNAME} -o json | jq '.spec.topology.workers.machineDeployments[].metadata += {"annotations":{"password-updated-on":"'"$(date +%Y-%m-%d)"'"}}'| kubectl apply -f -
