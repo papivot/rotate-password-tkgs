@@ -73,6 +73,6 @@ echo
 echo "Requried password secrets updated. Repave your ${CLUSTERNAME} cluster ..."
 echo
 
-kubectl -n ${NAMESPACE} patch cluster ${CLUSTERNAME} --type merge -p '{"spec": {"topology": {"controlPlane": {"metadata": {"annotations":{"password-update":"'"$(date +%Y-%m-%d)"'"}}}}}}'
+kubectl -n ${NAMESPACE} patch cluster ${CLUSTERNAME} --type merge -p '{"spec": {"topology": {"controlPlane": {"metadata": {"annotations":{"passwd-modified-on-'"$(date +%Y-%m-%d)"'":""}}}}}}'
 sleep 5
-kubectl -n ${NAMESPACE} get   cluster ${CLUSTERNAME} -o json | jq '.spec.topology.workers.machineDeployments[].metadata += {"annotations":{"password-updated-on":"'"$(date +%Y-%m-%d)"'"}}'| kubectl apply -f -
+kubectl -n ${NAMESPACE} get   cluster ${CLUSTERNAME} -o json | jq '.spec.topology.workers.machineDeployments[].metadata.annotations += {"passwd-modified-on-'"$(date +%Y-%m-%d)"'":""}'| jq 'del(.metadata.creationTimestamp, .metadata.resourceVersion, .metadata.uid, .metadata.generation)' | kubectl apply -f -
